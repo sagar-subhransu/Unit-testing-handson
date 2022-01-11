@@ -15,6 +15,27 @@ describe('customer details', () => {
       expect(h2).to.exist;
     });
 
+    
+  it('Should render lionInputDate', async () => {
+    const lionInputDate = await fixture(html`<lion-input-datepicker></lion-input-datepicker>`);
+    expect(lionInputDate).to.be.accessible;
+  });
+
+  it('Should render LionInputAmount', async () => {
+    const lionInputAmount = await fixture(html`<lion-input-amount></lion-input-amount>`);
+    expect(lionInputAmount).to.be.accessible;
+  });
+
+  it('Should render lionInputEmail', async () => {
+    const lionInputEmail = await fixture(html`<lion-input-email></lion-input-email>`);
+    expect(lionInputEmail).to.be.accessible;
+  });
+
+  it('Should render lionInputEmail', async () => {
+    const lionCheckbox = await fixture(html`<lion-checkbox></lion-checkbox>`);
+    expect(lionCheckbox).to.be.accessible;
+  });
+
   // it('should call _toEmidetails()', async () => {
   //   const buttons = el.shadowRoot?.querySelectorAll('lion-button');
   //   const toEmidetails = stub(el, '_toEmidetails');
