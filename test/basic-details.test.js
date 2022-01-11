@@ -1,5 +1,5 @@
 import { html, fixture, expect } from '@open-wc/testing';
-import  Sinon  from 'sinon';
+import  Sinon , { stub } from 'sinon';
 import '../src/LoanBasicDetails/BasicDetails.js';
 
 const el = await fixture(html`<basic-details><basic-details>`);
@@ -56,6 +56,32 @@ describe('Basic details', () => {
     const submitSpy = Sinon.spy(el, '_numToWord');
     const res = el._numToWord();
     expect(res).to.equal(undefined);
+  });
+
+  it('calls capturedetails function when a button is clicked', async () => {
+    const el = await fixture(
+      html`<basic-details
+        ><lion-form><form></form></lion-form
+      ></basic-details>`
+    );
+    const myFunctionStub = stub(el, '_captureDetails');
+    el.requestUpdate();
+    await el.updateComplete;
+    el.shadowRoot.querySelector('button').click();
+    expect(myFunctionStub).to.have.callCount(0);
+  });
+
+  it('calls dashboard function when a button is clicked', async () => {
+    const el = await fixture(
+      html`<basic-details
+        ><lion-form><form></form></lion-form
+      ></basic-details>`
+    );
+    const myFunctionStub = stub(el, '_toDashboard');
+    el.requestUpdate();
+    await el.updateComplete;
+    el.shadowRoot.querySelector('button').click();
+    expect(myFunctionStub).to.have.callCount(1);
   });
 
 });

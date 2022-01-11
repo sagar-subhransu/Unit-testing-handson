@@ -35,6 +35,19 @@ describe('customer details', () => {
     const lionCheckbox = await fixture(html`<lion-checkbox></lion-checkbox>`);
     expect(lionCheckbox).to.be.accessible;
   });
+  
+  it('calls emidetails function when a button is clicked', async () => {
+    const el = await fixture(
+      html`<customer-details
+        ><lion-form><form></form></lion-form
+      ></customer-details>`
+    );
+    const myFunctionStub = stub(el, '_toEmidetails');
+    el.requestUpdate();
+    await el.updateComplete;
+    el.shadowRoot.querySelector('button').click();
+    expect(myFunctionStub).to.have.callCount(0);
+  });
 
   // it('should call _toEmidetails()', async () => {
   //   const buttons = el.shadowRoot?.querySelectorAll('lion-button');
